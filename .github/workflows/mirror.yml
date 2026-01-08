@@ -1,0 +1,17 @@
+name: Sync with upstream
+on:
+  schedule:
+    - cron: "14 3 * * *"
+  push:
+  workflow_dispatch:
+
+jobs:
+  sync-mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update mirror
+        uses: projg2/golang-dist-mirror-action@master
+        with:
+          upstream-repo: https://github.com/NETWAYS/check_hp_firmware.git
+          token: ${{ secrets.TOKEN }}
+
